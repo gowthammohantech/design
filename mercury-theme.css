@@ -1,0 +1,202 @@
+/* Mercury design system — Tailwind v4 theme layer.
+   Import after `@import "tailwindcss";`.
+   Tokens mirror DESIGN.md. Arcadia is proprietary; Inter Variable is the fallback. */
+
+@theme {
+  /* ---- Brand & accent ---- */
+  --color-primary: #5266eb;
+  --color-primary-hover: #4354c8;
+  --color-primary-active: #3442a6;
+  --color-primary-soft: color-mix(in srgb, #5266eb 10%, transparent);
+  --color-accent-periwinkle: #9cb4e8; /* decoration only */
+  --color-accent-mist: #cdddff;       /* decoration only */
+  --color-on-primary: #ffffff;
+
+  /* ---- Surfaces ---- */
+  --color-canvas: #171721;
+  --color-canvas-elevated: #1e1e2a;
+  --color-canvas-light: #fbfcfd;
+  --color-surface-default: #ededf3;
+  --color-surface-secondary: #f4f5f9;
+  --color-surface-hover: #dddde5;
+
+  /* ---- Ink ---- */
+  --color-ink-default: #ededf3;
+  --color-ink-emphasized: #1e1e2a;
+  --color-ink-subdued: #c3c3cc;
+  --color-ink-disabled: #70707d;
+
+  /* ---- Hairlines & semantic ---- */
+  --color-hairline: #272735;
+  --color-hairline-subdued: #c3c3cc;
+  --color-error: #d03275;
+
+  /* ---- Families ---- */
+  --font-display: arcadiaDisplay, "Inter Variable", system-ui, sans-serif;
+  --font-sans: arcadia, "Inter Variable", system-ui, sans-serif;
+
+  /* ---- Type scale (size / line-height / tracking / weight) ---- */
+  --text-display-xxl: 65px;
+  --text-display-xxl--line-height: 1.1;
+  --text-display-xxl--letter-spacing: 0;
+  --text-display-xxl--font-weight: 480;
+
+  --text-display-xl: 49px;
+  --text-display-xl--line-height: 1.1;
+  --text-display-xl--letter-spacing: 0;
+  --text-display-xl--font-weight: 480;
+
+  --text-display-lg: 42px;
+  --text-display-lg--line-height: 1.15;
+  --text-display-lg--letter-spacing: 0.42px;
+  --text-display-lg--font-weight: 480;
+
+  --text-display-md: 32px;
+  --text-display-md--line-height: 1.15;
+  --text-display-md--letter-spacing: 0.48px;
+  --text-display-md--font-weight: 480;
+
+  --text-display-sm: 28px;
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--letter-spacing: 0.42px;
+  --text-display-sm--font-weight: 480;
+
+  --text-heading-md: 24px;
+  --text-heading-md--line-height: 1.2;
+  --text-heading-md--letter-spacing: 0.48px;
+  --text-heading-md--font-weight: 480;
+
+  --text-body-lg: 21px;
+  --text-body-lg--line-height: 1.35;
+  --text-body-lg--font-weight: 360;
+
+  --text-body-md: 18px;
+  --text-body-md--line-height: 1.35;
+  --text-body-md--font-weight: 360;
+
+  --text-body: 16px;
+  --text-body--line-height: 1;
+  --text-body--font-weight: 420;
+
+  --text-body-relaxed: 16px;
+  --text-body-relaxed--line-height: 1.4;
+  --text-body-relaxed--font-weight: 400;
+
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.24px;
+  --text-caption--font-weight: 400;
+
+  /* ---- Radii ---- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 32px;  /* pill CTA */
+  --radius-xl: 40px;
+  --radius-pill: 9999px;
+
+  /* ---- Spacing ---- */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-base: 20px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 72px;
+  --spacing-3xl: 112px;
+
+  /* ---- Layout chrome ---- */
+  --navbar-height: 72px;
+  --subnav-height: 48px;
+  --grid-max-width: 1952px;
+  --grid-gutters: 32px;
+
+  /* ---- Motion ---- */
+  --default-transition-duration: 0.15s;
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark canvas is the default state of the brand, not a toggle. */
+@layer base {
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink-default);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 420;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 480;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Component recipes — optional, mirrors the DESIGN.md components block. */
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 var(--spacing-base);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    font-weight: 420;
+    transition: background-color var(--default-transition-duration) var(--ease-in-out);
+  }
+  .btn-primary:hover { background-color: var(--color-primary-hover); }
+  .btn-primary:active { background-color: var(--color-primary-active); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 var(--spacing-base);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-canvas);
+    color: var(--color-ink-default);
+    border: 1px solid var(--color-hairline);
+    font-weight: 420;
+  }
+
+  .input-field {
+    height: 46px;
+    padding: 0 var(--spacing-base);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-canvas-light);
+    color: var(--color-ink-emphasized);
+    border: 1px solid var(--color-hairline-subdued);
+    font-weight: 420;
+  }
+  .input-field:focus { border-color: var(--color-primary); }
+
+  .card-scene {
+    background-color: var(--color-canvas-elevated);
+    color: var(--color-ink-default);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+  }
+
+  .pill-tag-soft {
+    display: inline-flex;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 12px;
+    letter-spacing: 0.24px;
+  }
+}
